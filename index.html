@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Ramirez Casino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f212e;
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+        .glow-border {
+            position: relative;
+            overflow: hidden;
+        }
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.5rem; 
+            padding: 2px;
+            background: linear-gradient(45deg, #1fff20, #f08c14, #ef0255);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .glow-border:hover::before {
+            opacity: 1;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .beta-tag {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background-color: #f08c14;
+            color: black;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        #animation-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <canvas id="animation-canvas"></canvas>
+
+    <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="https://i.postimg.cc/9FXgpPM4/imagen.png" alt="Logo" class="h-16 md:h-20">
+        </div>
+        <nav class="flex space-x-6">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">Home</a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">About</a>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="text-center py-20 md:py-32">
+            <h1 class="font-poppins text-5xl md:text-7xl font-bold text-white tracking-tight">
+                Welcome
+            </h1>
+        </section>
+
+        <!-- Games Section -->
+        <section class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Mines Game Card -->
+                <a href="mines.html" class="glow-border rounded-lg block transform hover:-translate-y-2 transition-transform duration-300 ease-in-out overflow-hidden">
+                    <img src="https://i.postimg.cc/fb7MZ4fw/Gemini-Generated-Image-mzopzvmzopzvmzop.png" alt="Mines Game Thumbnail" class="w-full h-full object-cover">
+                </a>
+
+                <!-- Plinko Game Card -->
+                <a href="plinko.html" class="glow-border rounded-lg block transform hover:-translate-y-2 transition-transform duration-300 ease-in-out relative overflow-hidden">
+                    <img src="https://i.postimg.cc/8C7LnHRB/Gemini-Generated-Image-m7wi5xm7wi5xm7wi.png" alt="Plinko Game Thumbnail" class="w-full h-full object-cover">
+                    <div class="beta-tag">Beta</div>
+                </a>
+
+                <!-- Coming Soon Card -->
+                <div class="bg-[#1a2c38]/50 border-2 border-dashed border-gray-600 rounded-lg p-6 flex flex-col items-center justify-center text-center min-h-[224px]">
+                     <div class="mb-4">
+                        <svg class="w-16 h-16 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.5 21.75l-.398-1.188a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.188-.398a2.25 2.25 0 001.423-1.423L16.5 15.75l.398 1.188a2.25 2.25 0 001.423 1.423L19.5 18.75l-1.188.398a2.25 2.25 0 00-1.423 1.423z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-poppins text-2xl font-semibold text-white">More Games Coming Soon...</h3>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-gray-500">
+        <p>Made by Carlos Ramirez!</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('animation-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            stars = [];
+            createStars();
+        });
+
+        // Stars
+        let stars = [];
+        function createStars() {
+            for (let i = 0; i < 300; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.5,
+                    alpha: Math.random(),
+                    dAlpha: Math.random() * 0.02 - 0.01
+                });
+            }
+        }
+
+        function drawStars() {
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                star.alpha += star.dAlpha;
+                if (star.alpha > 1) { star.alpha = 1; star.dAlpha *= -1; }
+                if (star.alpha < 0) { star.alpha = 0; star.dAlpha *= -1; }
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                ctx.fill();
+            });
+        }
+
+        // Fireworks
+        let fireworks = [];
+        let particles = [];
+
+        function createFirework() {
+            fireworks.push({
+                x: Math.random() * width,
+                y: height,
+                targetY: Math.random() * height * 0.8,
+                speed: 2 + Math.random() * 2,
+                color: `hsl(${Math.random() * 360}, 100%, 50%)`
+            });
+        }
+
+        function drawFireworks() {
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                const fw = fireworks[i];
+                ctx.beginPath();
+                ctx.arc(fw.x, fw.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = fw.color;
+                ctx.fill();
+
+                fw.y -= fw.speed;
+
+                if (fw.y < fw.targetY) {
+                    explode(fw.x, fw.y, fw.color);
+                    fireworks.splice(i, 1);
+                }
+            }
+        }
+
+        function explode(x, y, color) {
+            const particleCount = 100;
+            const angleStep = Math.PI * 2 / particleCount;
+
+            for (let i = 0; i < particleCount; i++) {
+                const angle = angleStep * i;
+                const speed = Math.random() * 4 + 1;
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    color: color,
+                    alpha: 1,
+                    friction: 0.98,
+                    gravity: 0.05
+                });
+            }
+        }
+
+        function drawParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+                const hue = parseInt(p.color.substring(p.color.indexOf('(') + 1));
+                ctx.fillStyle = `hsla(${hue}, 100%, 50%, ${p.alpha})`;
+                ctx.fill();
+                
+                p.vx *= p.friction;
+                p.vy *= p.friction;
+                p.vy += p.gravity;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.02;
+
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+        
+        let lastFireworkTime = 0;
+
+        function animate(timestamp) {
+            ctx.fillStyle = 'rgba(15, 33, 46, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+
+            drawStars();
+            drawFireworks();
+            drawParticles();
+            
+            if (timestamp - lastFireworkTime > 1000 + Math.random() * 1000) {
+                createFirework();
+                lastFireworkTime = timestamp;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        createStars();
+        animate(0);
+    </script>
+</body>
+</html>
