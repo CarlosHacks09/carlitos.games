@@ -47,680 +47,674 @@
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4 pt-8">
+<header class="w-full max-w-5xl mb-6 flex justify-between items-center">
+    <div class="flex items-center space-x-8">
+        <h1 class="text-4xl font-semibold text-white" style="font-family: 'Poppins', sans-serif;">Plinko</h1>
+        <nav class="flex space-x-6">
+            <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-200">Home</a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">About</a>
+        </nav>
+    </div>
+    <img src="https://i.postimg.cc/9FXgpPM4/imagen.png" alt="Logo" class="h-24 cursor-pointer">
+</header>
 
-    <header class="w-full max-w-5xl mb-6 flex justify-between items-center">
-        <div class="flex items-center space-x-8">
-            <h1 class="text-4xl font-semibold text-white" style="font-family: 'Poppins', sans-serif;">Plinko</h1>
-            <nav class="flex space-x-6">
-                <a href="../index.html" class="text-gray-300 hover:text-white transition-colors duration-200">Home</a>
-                <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">About</a>
-            </nav>
-        </div>
-        <img src="https://i.postimg.cc/9FXgpPM4/imagen.png" alt="Logo" class="h-24 cursor-pointer">
-    </header>
-
-    <div class="w-full max-w-5xl bg-[#1a2c38] rounded-lg shadow-lg flex flex-col md:flex-row p-4 md:p-6 space-y-4 md:space-y-0 md:space-x-6">
-        <!-- Controls Panel -->
-        <div class="w-full md:w-1/3 bg-[#0f212e] p-4 rounded-lg flex flex-col">
-            <div class="space-y-4 flex-grow">
-                <div>
-                    <label for="betAmount" class="text-xs font-semibold text-gray-400">Bet Amount</label>
-                    <div class="relative mt-1">
-                        <input type="number" id="betAmount" class="w-full bg-[#1a2c38] border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#1fff20]" value="1.00">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-2 space-x-1">
-                            <button id="betHalf" class="bg-[#2c4251] hover:bg-[#3b5568] text-gray-300 font-bold py-1 px-2 rounded text-xs transition-colors">½</button>
-                            <button id="betDouble" class="bg-[#2c4251] hover:bg-[#3b5568] text-gray-300 font-bold py-1 px-2 rounded text-xs transition-colors">2×</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="difficulty" class="text-xs font-semibold text-gray-400">Difficulty</label>
-                    <select id="difficulty" class="w-full bg-[#1a2c38] border border-gray-600 rounded-md py-2 px-3 mt-1 focus:outline-none focus:ring-2 focus:ring-[#1fff20]">
-                        <option value="low">Low</option>
-                        <option value="medium" selected>Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="rows" class="text-xs font-semibold text-gray-400">Rows</label>
-                    <select id="rows" class="w-full bg-[#1a2c38] border border-gray-600 rounded-md py-2 px-3 mt-1 focus:outline-none focus:ring-2 focus:ring-[#1fff20]">
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option selected>16</option>
-                    </select>
-                </div>
-                 <!-- Secret Debug Mode Note -->
-                <div id="secret-menu-container" class="hidden text-center space-y-2 pt-2">
-                    <p class="text-lg font-bold text-yellow-400">👾 Debug Mode 👾</p>
-                    <div class="text-xs text-gray-400 leading-tight">
-                        <p>Balls in Play: <span id="stats-balls-in-play" class="font-semibold text-white">0</span></p>
-                        <p>Money in Play: <span id="stats-money-in-play" class="font-semibold text-white">$0.00</span></p>
-                        <p>Returned: <span id="stats-returned" class="font-semibold text-white">$0.00</span></p>
-                        <p>Hit Ratio (W/L): 
-                            <span id="stats-wins" class="font-semibold text-[#1fff20]">0</span> to 
-                            <span id="stats-losses" class="font-semibold text-[#ef0255]">0</span>
-                        </p>
+<div class="w-full max-w-5xl bg-[#1a2c38] rounded-lg shadow-lg flex flex-col md:flex-row p-4 md:p-6 space-y-4 md:space-y-0 md:space-x-6">
+    <!-- Controls Panel -->
+    <div class="w-full md:w-1/3 bg-[#0f212e] p-4 rounded-lg flex flex-col">
+        <div class="space-y-4 flex-grow">
+            <div>
+                <label for="betAmount" class="text-xs font-semibold text-gray-400">Bet Amount</label>
+                <div class="relative mt-1">
+                    <input type="number" id="betAmount" class="w-full bg-[#1a2c38] border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#1fff20]" value="1.00">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 space-x-1">
+                        <button id="betHalf" class="bg-[#2c4251] hover:bg-[#3b5568] text-gray-300 font-bold py-1 px-2 rounded text-xs transition-colors">½</button>
+                        <button id="betDouble" class="bg-[#2c4251] hover:bg-[#3b5568] text-gray-300 font-bold py-1 px-2 rounded text-xs transition-colors">2×</button>
                     </div>
                 </div>
             </div>
-            <canvas id="profit-graph" class="hidden w-full h-24 mb-4 bg-[#1a2c38] rounded-lg"></canvas>
-            <button id="betButton" class="w-full bg-[#1fff20] hover:bg-[#19cc1a] text-black font-bold py-3 px-4 rounded-md transition duration-300">
-                Bet
-            </button>
-            <div id="message" class="text-center mt-2 h-6 text-sm"></div>
-        </div>
-
-        <!-- Game Area -->
-        <div id="game-container" class="w-full md:w-2/3 bg-[#0f212e] p-2 rounded-lg flex items-center justify-center relative aspect-square">
-            <canvas id="plinko-canvas"></canvas>
-
-            <!-- Win Overlay -->
-            <div id="win-overlay" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div class="bg-[#0f212e] border-2 border-[#1fff20] rounded-lg p-4 text-center shadow-lg animate-pop-in w-36">
-                    <div id="win-multiplier" class="text-3xl font-bold text-[#1fff20]"></div>
-                    <div id="win-amount" class="text-base font-semibold text-gray-300 mt-1"></div>
+            <div>
+                <label for="difficulty" class="text-xs font-semibold text-gray-400">Difficulty</label>
+                <select id="difficulty" class="w-full bg-[#1a2c38] border border-gray-600 rounded-md py-2 px-3 mt-1 focus:outline-none focus:ring-2 focus:ring-[#1fff20]">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div>
+                <label for="rows" class="text-xs font-semibold text-gray-400">Rows</label>
+                <select id="rows" class="w-full bg-[#1a2c38] border border-gray-600 rounded-md py-2 px-3 mt-1 focus:outline-none focus:ring-2 focus:ring-[#1fff20]">
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option selected>16</option>
+                </select>
+            </div>
+            <!-- Secret Debug Mode Note -->
+            <div id="secret-menu-container" class="hidden text-center space-y-2 pt-2">
+                <p class="text-lg font-bold text-yellow-400">👾 Debug Mode 👾</p>
+                <div class="text-xs text-gray-400 leading-tight">
+                    <p>Balls in Play: <span id="stats-balls-in-play" class="font-semibold text-white">0</span></p>
+                    <p>Money in Play: <span id="stats-money-in-play" class="font-semibold text-white">$0.00</span></p>
+                    <p>Return: <span id="stats-total-return" class="font-semibold text-white">$0.00</span></p>
+                    <p>Hit Ratio (W/L): 
+                        <span id="stats-wins" class="font-semibold text-[#1fff20]">0</span> to 
+                        <span id="stats-losses" class="font-semibold text-[#ef0255]">0</span>
+                    </p>
                 </div>
             </div>
+        </div>
+        <canvas id="profit-graph" class="hidden w-full h-24 mb-4 bg-[#1a2c38] rounded-lg"></canvas>
+        <button id="betButton" class="w-full bg-[#1fff20] hover:bg-[#19cc1a] text-black font-bold py-3 px-4 rounded-md transition duration-300">
+            Bet
+        </button>
+        <div id="message" class="text-center mt-2 h-6 text-sm"></div>
+    </div>
 
-            <!-- Loss Overlay -->
-            <div id="loss-overlay" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none">
-                 <div class="bg-[#0f212e] border-2 border-[#ef0255] rounded-lg p-4 text-center shadow-lg animate-pop-in w-36">
-                    <div id="loss-multiplier" class="text-3xl font-bold text-[#ef0255]"></div>
-                    <div id="loss-amount" class="text-base font-semibold text-[#ef0255] mt-1"></div>
-                </div>
+    <!-- Game Area -->
+    <div id="game-container" class="w-full md:w-2/3 bg-[#0f212e] p-2 rounded-lg flex items-center justify-center relative aspect-square">
+        <canvas id="plinko-canvas"></canvas>
+
+        <!-- Win Overlay -->
+        <div id="win-overlay" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="bg-[#0f212e] border-2 border-[#1fff20] rounded-lg p-4 text-center shadow-lg animate-pop-in w-36">
+                <div id="win-multiplier" class="text-3xl font-bold text-[#1fff20]"></div>
+                <div id="win-amount" class="text-base font-semibold text-gray-300 mt-1"></div>
+            </div>
+        </div>
+
+        <!-- Loss Overlay -->
+        <div id="loss-overlay" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none">
+             <div class="bg-[#0f212e] border-2 border-[#ef0255] rounded-lg p-4 text-center shadow-lg animate-pop-in w-36">
+                <div id="loss-multiplier" class="text-3xl font-bold text-[#ef0255]"></div>
+                <div id="loss-amount" class="text-base font-semibold text-[#ef0255] mt-1"></div>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        const betAmountInput = document.getElementById('betAmount');
-        const betHalfButton = document.getElementById('betHalf');
-        const betDoubleButton = document.getElementById('betDouble');
-        const difficultySelect = document.getElementById('difficulty');
-        const rowsSelect = document.getElementById('rows');
-        const betButton = document.getElementById('betButton');
-        const canvas = document.getElementById('plinko-canvas');
-        const gameContainer = document.getElementById('game-container');
-        const profitGraphCanvas = document.getElementById('profit-graph');
-        const secretMenuContainer = document.getElementById('secret-menu-container');
-        const logoImage = document.querySelector('header img');
-        const messageEl = document.getElementById('message');
+<script>
+    const betAmountInput = document.getElementById('betAmount');
+    const betHalfButton = document.getElementById('betHalf');
+    const betDoubleButton = document.getElementById('betDouble');
+    const difficultySelect = document.getElementById('difficulty');
+    const rowsSelect = document.getElementById('rows');
+    const betButton = document.getElementById('betButton');
+    const canvas = document.getElementById('plinko-canvas');
+    const gameContainer = document.getElementById('game-container');
+    const profitGraphCanvas = document.getElementById('profit-graph');
+    const secretMenuContainer = document.getElementById('secret-menu-container');
+    const logoImage = document.querySelector('header img');
 
-        const { Engine, Render, Runner, World, Bodies, Events, Body } = Matter;
+    const { Engine, Render, Runner, World, Bodies, Events, Body } = Matter;
 
-        let engine, render, runner;
-        let balls = [];
-        let hitBuckets = [];
-        let activeBallsCount = 0;
-        let sessionResults = [];
-        let isSessionActive = false;
-        let sessionTimeout = null;
-        
-        let profitHistory = [0];
-        let typedSequence = '';
-        const secretCode = 'knight';
-        let isSecretMenuVisible = false;
-        
-        let logoClickCount = 0;
-        let logoClickTimer = null;
+    let engine, render, runner;
+    let balls = [];
+    let hitBuckets = [];
+    let activeBallsCount = 0;
+    let sessionResults = [];
+    let isSessionActive = false;
+    let sessionTimeout = null;
+    
+    // Stats variables
+    let profitHistory = [0];
+    let typedSequence = '';
+    const secretCode = 'knight';
+    let isSecretMenuVisible = false;
+    
+    let logoClickCount = 0;
+    let logoClickTimer = null;
 
-        let totalWins = 0;
-        let totalLosses = 0;
-        
-        let lastMoneyInPlay = null;
-        let lastReturnAmount = null;
-        let moneyStatTimeout = null;
+    let totalWins = 0;
+    let totalLosses = 0;
+    let totalReturn = 0;
+    let statsClearTimeout = null;
 
-        const MULTIPLIERS = {
-            low: {
-                8:  [5.6, 2.1, 1.1, 0.8, 0.5, 0.8, 1.1, 2.1, 5.6],
-                9:  [5.6, 2.2, 1.2, 1, 0.6, 0.6, 1, 1.2, 2.2, 5.6],
-                10: [8.9, 3, 1.4, 1.1, 0.8, 0.5, 0.8, 1.1, 1.4, 3, 8.9],
-                11: [8.9, 4, 2, 1.2, 1, 0.6, 0.6, 1, 1.2, 2, 4, 8.9],
-                12: [10, 5, 2, 1.5, 1.1, 0.8, 0.5, 0.8, 1.1, 1.5, 2, 5, 10],
-                13: [10, 5, 3, 1.5, 1.2, 1, 0.6, 0.6, 1, 1.2, 1.5, 3, 5, 10],
-                14: [16, 9, 2, 1.4, 1.1, 1, 0.5, 0.4, 0.5, 1, 1.1, 1.4, 2, 9, 16],
-                15: [16, 9, 2, 1.4, 1.1, 1, 0.5, 0.4, 0.4, 0.5, 1, 1.1, 1.4, 2, 9, 16],
-                16: [16, 9, 2, 1.4, 1.1, 1, 0.5, 0.4, 0.3, 0.4, 0.5, 1, 1.1, 1.4, 2, 9, 16]
-            },
-            medium: {
-                8:  [13, 3, 1.3, 0.7, 0.4, 0.7, 1.3, 3, 13],
-                9:  [15, 4, 1.5, 0.8, 0.5, 0.5, 0.8, 1.5, 4, 15],
-                10: [22, 6, 2, 1.1, 0.6, 0.3, 0.6, 1.1, 2, 6, 22],
-                11: [30, 8, 3, 1.3, 0.7, 0.4, 0.4, 0.7, 1.3, 3, 8, 30],
-                12: [45, 10, 4, 2, 1, 0.5, 0.3, 0.5, 1, 2, 4, 10, 45],
-                13: [60, 15, 6, 3, 1.3, 0.6, 0.4, 0.4, 0.6, 1.3, 3, 6, 15, 60],
-                14: [80, 20, 8, 4, 2, 1, 0.5, 0.3, 0.5, 1, 2, 4, 8, 20, 80],
-                15: [110, 35, 10, 5, 3, 1.5, 1, 0.5, 0.5, 1, 1.5, 3, 5, 10, 35, 110],
-                16: [110, 41, 10, 5, 3, 1.5, 1, 0.5, 0.3, 0.5, 1, 1.5, 3, 5, 10, 41, 110]
-            },
-            high: {
-                8:  [29, 4, 1.5, 0.3, 0.1, 0.3, 1.5, 4, 29],
-                9:  [43, 6, 2, 0.7, 0.2, 0.2, 0.7, 2, 6, 43],
-                10: [76, 10, 3, 1, 0.5, 0.1, 0.5, 1, 3, 10, 76],
-                11: [120, 17, 5, 1.5, 0.5, 0.2, 0.2, 0.5, 1.5, 5, 17, 120],
-                12: [170, 26, 8, 2, 0.8, 0.3, 0.1, 0.3, 0.8, 2, 8, 26, 170],
-                13: [260, 41, 12, 4, 1, 0.4, 0.2, 0.2, 0.4, 1, 4, 12, 41, 260],
-                14: [420, 60, 18, 5, 2, 0.7, 0.3, 0.1, 0.3, 0.7, 2, 5, 18, 60, 420],
-                15: [620, 110, 30, 8, 3, 1, 0.4, 0.2, 0.2, 0.4, 1, 3, 8, 30, 110, 620],
-                16: [1000, 130, 26, 9, 4, 2, 1.2, 0.5, 0.3, 0.5, 1.2, 2, 4, 9, 26, 130, 1000]
-            }
-        };
-
-        function setup() {
-            engine = Engine.create({ gravity: { x: 0, y: 0.5625 } });
-            
-            const containerWidth = gameContainer.clientWidth;
-            const containerHeight = gameContainer.clientHeight;
-
-            render = Render.create({
-                canvas: canvas,
-                engine: engine,
-                options: {
-                    width: containerWidth,
-                    height: containerHeight,
-                    wireframes: false,
-                    background: 'transparent'
-                }
-            });
-            runner = Runner.create();
-            Runner.run(runner, engine);
-            Render.run(render);
-
-            drawScene();
-
-            Events.on(engine, 'collisionStart', handleCollision);
-            Events.on(render, 'afterRender', customRender);
+    const MULTIPLIERS = {
+        low: {
+            8:  [5.6, 2.1, 1.1, 0.8, 0.5, 0.8, 1.1, 2.1, 5.6],
+            9:  [5.6, 2.2, 1.2, 1, 0.6, 0.6, 1, 1.2, 2.2, 5.6],
+            10: [8.9, 3, 1.4, 1.1, 0.8, 0.5, 0.8, 1.1, 1.4, 3, 8.9],
+            11: [8.9, 4, 2, 1.2, 1, 0.6, 0.6, 1, 1.2, 2, 4, 8.9],
+            12: [10, 5, 2, 1.5, 1.1, 0.8, 0.5, 0.8, 1.1, 1.5, 2, 5, 10],
+            13: [10, 5, 3, 1.5, 1.2, 1, 0.6, 0.6, 1, 1.2, 1.5, 3, 5, 10],
+            14: [16, 9, 2, 1.4, 1.1, 1, 0.5, 0.4, 0.5, 1, 1.1, 1.4, 2, 9, 16],
+            15: [16, 9, 2, 1.4, 1.1, 1, 0.5, 0.4, 0.4, 0.5, 1, 1.1, 1.4, 2, 9, 16],
+            16: [16, 9, 2, 1.4, 1.1, 1, 0.5, 0.4, 0.3, 0.4, 0.5, 1, 1.1, 1.4, 2, 9, 16]
+        },
+        medium: {
+            8:  [13, 3, 1.3, 0.7, 0.4, 0.7, 1.3, 3, 13],
+            9:  [15, 4, 1.5, 0.8, 0.5, 0.5, 0.8, 1.5, 4, 15],
+            10: [22, 6, 2, 1.1, 0.6, 0.3, 0.6, 1.1, 2, 6, 22],
+            11: [30, 8, 3, 1.3, 0.7, 0.4, 0.4, 0.7, 1.3, 3, 8, 30],
+            12: [45, 10, 4, 2, 1, 0.5, 0.3, 0.5, 1, 2, 4, 10, 45],
+            13: [60, 15, 6, 3, 1.3, 0.6, 0.4, 0.4, 0.6, 1.3, 3, 6, 15, 60],
+            14: [80, 20, 8, 4, 2, 1, 0.5, 0.3, 0.5, 1, 2, 4, 8, 20, 80],
+            15: [110, 35, 10, 5, 3, 1.5, 1, 0.5, 0.5, 1, 1.5, 3, 5, 10, 35, 110],
+            16: [110, 41, 10, 5, 3, 1.5, 1, 0.5, 0.3, 0.5, 1, 1.5, 3, 5, 10, 41, 110]
+        },
+        high: {
+            8:  [29, 4, 1.5, 0.3, 0.1, 0.3, 1.5, 4, 29],
+            9:  [43, 6, 2, 0.7, 0.2, 0.2, 0.7, 2, 6, 43],
+            10: [76, 10, 3, 1, 0.5, 0.1, 0.5, 1, 3, 10, 76],
+            11: [120, 17, 5, 1.5, 0.5, 0.2, 0.2, 0.5, 1.5, 5, 17, 120],
+            12: [170, 26, 8, 2, 0.8, 0.3, 0.1, 0.3, 0.8, 2, 8, 26, 170],
+            13: [260, 41, 12, 4, 1, 0.4, 0.2, 0.2, 0.4, 1, 4, 12, 41, 260],
+            14: [420, 60, 18, 5, 2, 0.7, 0.3, 0.1, 0.3, 0.7, 2, 5, 18, 60, 420],
+            15: [620, 110, 30, 8, 3, 1, 0.4, 0.2, 0.2, 0.4, 1, 3, 8, 30, 110, 620],
+            16: [1000, 130, 26, 9, 4, 2, 1.2, 0.5, 0.3, 0.5, 1.2, 2, 4, 9, 26, 130, 1000]
         }
+    };
 
-        function drawScene() {
-            World.clear(engine.world);
-            const rows = parseInt(rowsSelect.value);
-            const { width, height } = render.options;
-            const pegRadius = width / 120;
-            const rowSpacing = height / (rows + 4);
-            const colSpacing = width / (rows + 1);
+    function setup() {
+        engine = Engine.create({ gravity: { x: 0, y: 0.5625 } });
+        
+        const containerWidth = gameContainer.clientWidth;
+        const containerHeight = gameContainer.clientHeight;
 
-            for (let row = 1; row < rows; row++) {
-                const numPegs = row + 1;
-                for (let col = 0; col < numPegs; col++) {
-                    const x = (width / 2) - (colSpacing * row / 2) + (col * colSpacing);
-                    const y = rowSpacing * (row + 0.75);
-                    const peg = Bodies.circle(x, y, pegRadius, {
-                        isStatic: true,
-                        label: 'peg',
-                        render: { fillStyle: 'white' }
-                    });
-                    World.add(engine.world, peg);
-                }
+        render = Render.create({
+            canvas: canvas,
+            engine: engine,
+            options: {
+                width: containerWidth,
+                height: containerHeight,
+                wireframes: false,
+                background: 'transparent'
             }
-            
-            const wallOptions = { isStatic: true, render: { visible: false } };
-            
-            const topWallStartY = rowSpacing * 0.75;
-            const topWallEndY = rowSpacing * 3.25;
-            const topWallHeight = topWallEndY - topWallStartY;
-            const topWallXOffset = colSpacing;
-            const leftTopWall = Bodies.rectangle((width / 2) - topWallXOffset, topWallStartY + topWallHeight / 2, 5, topWallHeight, wallOptions);
-            const rightTopWall = Bodies.rectangle((width / 2) + topWallXOffset, topWallStartY + topWallHeight / 2, 5, topWallHeight, wallOptions);
-            const bottomWallStartX = (width / 2) - topWallXOffset;
-            const bottomWallStartY = topWallEndY;
-            const bottomWallEndX = (width / 2) - (colSpacing * 3);
-            const bottomWallEndY = topWallEndY + rowSpacing * 4;
-            const dx = bottomWallEndX - bottomWallStartX;
-            const dy = bottomWallEndY - bottomWallStartY;
-            const wallLength = Math.sqrt(dx*dx + dy*dy);
-            const wallAngle = Math.atan2(dy, dx);
-            const wallMidX = bottomWallStartX + dx / 2;
-            const wallMidY = bottomWallStartY + dy / 2;
-            const leftBottomWall = Bodies.rectangle(wallMidX, wallMidY, wallLength, 5, wallOptions);
-            Body.rotate(leftBottomWall, wallAngle);
-            const rightBottomWall = Bodies.rectangle(width - wallMidX, wallMidY, wallLength, 5, wallOptions);
-            Body.rotate(rightBottomWall, -wallAngle);
-            World.add(engine.world, [leftTopWall, rightTopWall, leftBottomWall, rightBottomWall]);
+        });
+        runner = Runner.create();
+        Runner.run(runner, engine);
+        Render.run(render);
 
-            const sideWallWidth = 10;
-            const leftSideWall = Bodies.rectangle(sideWallWidth / 2, height / 2, sideWallWidth, height, wallOptions);
-            const rightSideWall = Bodies.rectangle(width - (sideWallWidth / 2), height / 2, sideWallWidth, height, wallOptions);
-            World.add(engine.world, [leftSideWall, rightSideWall]);
+        drawScene();
 
-            const multipliers = getMultipliers();
-            const bucketWidth = colSpacing * 0.95;
-            const bucketHeight = bucketWidth * 0.8;
-            const bucketY = rowSpacing * (rows + 0.75);
+        Events.on(engine, 'collisionStart', handleCollision);
+        Events.on(render, 'afterRender', customRender);
+    }
 
-            for (let i = 0; i < multipliers.length; i++) {
-                const x = (width / 2) - (colSpacing * (rows) / 2) + (i * colSpacing);
-                const bucket = Bodies.rectangle(x, bucketY + bucketHeight / 2, bucketWidth, bucketHeight, {
+    function drawScene() {
+        World.clear(engine.world);
+        const rows = parseInt(rowsSelect.value);
+        const { width, height } = render.options;
+        const pegRadius = width / 120;
+        const rowSpacing = height / (rows + 4);
+        const colSpacing = width / (rows + 1);
+
+        for (let row = 1; row < rows; row++) {
+            const numPegs = row + 1;
+            for (let col = 0; col < numPegs; col++) {
+                const x = (width / 2) - (colSpacing * row / 2) + (col * colSpacing);
+                const y = rowSpacing * (row + 0.75);
+                const peg = Bodies.circle(x, y, pegRadius, {
                     isStatic: true,
-                    isSensor: true,
-                    label: `bucket-${i}`,
-                    render: { visible: false }
+                    label: 'peg',
+                    render: { fillStyle: 'white' }
                 });
-                World.add(engine.world, bucket);
+                World.add(engine.world, peg);
             }
         }
         
-        function getMultipliers() {
-            const difficulty = difficultySelect.value;
-            const rows = parseInt(rowsSelect.value);
-            return MULTIPLIERS[difficulty][rows];
-        }
-
-        function getBucketColor(multiplier) {
-             if (multiplier >= 110) return { main: '#ef4444', shadow: '#b91c1c' }; 
-             if (multiplier >= 26) return { main: '#f97316', shadow: '#c2410c' }; 
-             if (multiplier >= 3) return { main: '#f59e0b', shadow: '#b45309' };
-             if (multiplier >= 1) return { main: '#eab308', shadow: '#a16207' };
-             return { main: '#facc15', shadow: '#ca8a04' };
-        }
+        const wallOptions = { isStatic: true, render: { visible: false } };
         
-        function customRender() {
-            drawCustomBuckets();
-            const context = render.context;
-            balls.forEach(ball => {
-                const { x, y } = ball.position;
-                const radius = ball.circleRadius;
-                const color = ball.render.fillStyle;
-                const glowRadius = radius * 1.8;
-                const gradient = context.createRadialGradient(x, y, radius * 0.5, x, y, glowRadius);
-                gradient.addColorStop(0, color);
-                gradient.addColorStop(0.5, color + '66');
-                gradient.addColorStop(1, 'transparent');
-                context.beginPath();
-                context.arc(x, y, glowRadius, 0, 2 * Math.PI);
-                context.fillStyle = gradient;
-                context.fill();
-                context.beginPath();
-                context.arc(x, y, radius, 0, 2 * Math.PI);
-                context.fillStyle = color;
-                context.fill();
+        const topWallStartY = rowSpacing * 0.75;
+        const topWallEndY = rowSpacing * 3.25;
+        const topWallHeight = topWallEndY - topWallStartY;
+        const topWallXOffset = colSpacing;
+        const leftTopWall = Bodies.rectangle((width / 2) - topWallXOffset, topWallStartY + topWallHeight / 2, 5, topWallHeight, wallOptions);
+        const rightTopWall = Bodies.rectangle((width / 2) + topWallXOffset, topWallStartY + topWallHeight / 2, 5, topWallHeight, wallOptions);
+        const bottomWallStartX = (width / 2) - topWallXOffset;
+        const bottomWallStartY = topWallEndY;
+        const bottomWallEndX = (width / 2) - (colSpacing * 3);
+        const bottomWallEndY = topWallEndY + rowSpacing * 4;
+        const dx = bottomWallEndX - bottomWallStartX;
+        const dy = bottomWallEndY - bottomWallStartY;
+        const wallLength = Math.sqrt(dx*dx + dy*dy);
+        const wallAngle = Math.atan2(dy, dx);
+        const wallMidX = bottomWallStartX + dx / 2;
+        const wallMidY = bottomWallStartY + dy / 2;
+        const leftBottomWall = Bodies.rectangle(wallMidX, wallMidY, wallLength, 5, wallOptions);
+        Body.rotate(leftBottomWall, wallAngle);
+        const rightBottomWall = Bodies.rectangle(width - wallMidX, wallMidY, wallLength, 5, wallOptions);
+        Body.rotate(rightBottomWall, -wallAngle);
+        World.add(engine.world, [leftTopWall, rightTopWall, leftBottomWall, rightBottomWall]);
+
+        const sideWallWidth = 10;
+        const leftSideWall = Bodies.rectangle(sideWallWidth / 2, height / 2, sideWallWidth, height, wallOptions);
+        const rightSideWall = Bodies.rectangle(width - (sideWallWidth / 2), height / 2, sideWallWidth, height, wallOptions);
+        World.add(engine.world, [leftSideWall, rightSideWall]);
+
+        const multipliers = getMultipliers();
+        const bucketWidth = colSpacing * 0.95;
+        const bucketHeight = bucketWidth * 0.8;
+        const bucketY = rowSpacing * (rows + 0.75);
+
+        for (let i = 0; i < multipliers.length; i++) {
+            const x = (width / 2) - (colSpacing * (rows) / 2) + (i * colSpacing);
+            const bucket = Bodies.rectangle(x, bucketY + bucketHeight / 2, bucketWidth, bucketHeight, {
+                isStatic: true,
+                isSensor: true,
+                label: `bucket-${i}`,
+                render: { visible: false }
             });
+            World.add(engine.world, bucket);
         }
+    }
+    
+    function getMultipliers() {
+        const difficulty = difficultySelect.value;
+        const rows = parseInt(rowsSelect.value);
+        return MULTIPLIERS[difficulty][rows];
+    }
 
-        function drawCustomBuckets() {
-            const context = render.context;
-            const multipliers = getMultipliers();
-            const rows = parseInt(rowsSelect.value);
-            const { width, height } = render.options;
-            const rowSpacing = height / (rows + 4);
-            const colSpacing = width / (rows + 1);
-            const bucketWidth = colSpacing * 0.95;
-            const bucketHeight = bucketWidth * 0.7;
-            const bucketY = rowSpacing * (rows + 0.75);
-            const cornerRadius = bucketWidth / 8;
-            const shadowOffset = bucketHeight / 10;
+    function getBucketColor(multiplier) {
+         if (multiplier >= 110) return { main: '#ef4444', shadow: '#b91c1c' }; 
+         if (multiplier >= 26) return { main: '#f97316', shadow: '#c2410c' }; 
+         if (multiplier >= 3) return { main: '#f59e0b', shadow: '#b45309' };
+         if (multiplier >= 1) return { main: '#eab308', shadow: '#a16207' };
+         return { main: '#facc15', shadow: '#ca8a04' };
+    }
+    
+    function customRender() {
+        drawCustomBuckets();
+        const context = render.context;
+        balls.forEach(ball => {
+            const { x, y } = ball.position;
+            const radius = ball.circleRadius;
+            const color = ball.render.fillStyle;
+            const glowRadius = radius * 1.8;
+            const gradient = context.createRadialGradient(x, y, radius * 0.5, x, y, glowRadius);
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(0.5, color + '66');
+            gradient.addColorStop(1, 'transparent');
+            context.beginPath();
+            context.arc(x, y, glowRadius, 0, 2 * Math.PI);
+            context.fillStyle = gradient;
+            context.fill();
+            context.beginPath();
+            context.arc(x, y, radius, 0, 2 * Math.PI);
+            context.fillStyle = color;
+            context.fill();
+        });
+    }
 
+    function drawCustomBuckets() {
+        const context = render.context;
+        const multipliers = getMultipliers();
+        const rows = parseInt(rowsSelect.value);
+        const { width, height } = render.options;
+        const rowSpacing = height / (rows + 4);
+        const colSpacing = width / (rows + 1);
+        const bucketWidth = colSpacing * 0.95;
+        const bucketHeight = bucketWidth * 0.7;
+        const bucketY = rowSpacing * (rows + 0.75);
+        const cornerRadius = bucketWidth / 8;
+        const shadowOffset = bucketHeight / 10;
+
+        context.save();
+        for (let i = 0; i < multipliers.length; i++) {
+            const x = (width / 2) - (colSpacing * (rows) / 2) + (i * colSpacing);
+            const y = bucketY + bucketHeight / 2;
+            const multiplier = multipliers[i];
+            const colors = getBucketColor(multiplier);
+            let scale = 1.0;
+            const hitBucket = hitBuckets.find(b => b.index === i);
+            if (hitBucket) {
+                scale = 1 + 0.2 * hitBucket.progress;
+            }
             context.save();
-            for (let i = 0; i < multipliers.length; i++) {
-                const x = (width / 2) - (colSpacing * (rows) / 2) + (i * colSpacing);
-                const y = bucketY + bucketHeight / 2;
-                const multiplier = multipliers[i];
-                const colors = getBucketColor(multiplier);
-                let scale = 1.0;
-                const hitBucket = hitBuckets.find(b => b.index === i);
-                if (hitBucket) {
-                    scale = 1 + 0.2 * hitBucket.progress;
-                }
-                context.save();
-                context.translate(x, y);
-                context.scale(scale, scale);
-                context.translate(-x, -y);
-                context.fillStyle = colors.shadow;
-                context.beginPath();
-                context.moveTo(x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2 + shadowOffset);
-                context.lineTo(x + bucketWidth / 2 - cornerRadius, y - bucketHeight / 2 + shadowOffset);
-                context.arcTo(x + bucketWidth / 2, y - bucketHeight / 2 + shadowOffset, x + bucketWidth / 2, y - bucketHeight / 2 + cornerRadius + shadowOffset, cornerRadius);
-                context.lineTo(x + bucketWidth / 2, y + bucketHeight / 2 - cornerRadius + shadowOffset);
-                context.arcTo(x + bucketWidth / 2, y + bucketHeight / 2 + shadowOffset, x + bucketWidth / 2 - cornerRadius, y + bucketHeight / 2 + shadowOffset, cornerRadius);
-                context.lineTo(x - bucketWidth / 2 + cornerRadius, y + bucketHeight / 2 + shadowOffset);
-                context.arcTo(x - bucketWidth / 2, y + bucketHeight / 2 + shadowOffset, x - bucketWidth / 2, y + bucketHeight / 2 - cornerRadius + shadowOffset, cornerRadius);
-                context.lineTo(x - bucketWidth / 2, y - bucketHeight / 2 + cornerRadius + shadowOffset);
-                context.arcTo(x - bucketWidth / 2, y - bucketHeight / 2 + shadowOffset, x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2 + shadowOffset, cornerRadius);
-                context.closePath();
-                context.fill();
-                context.fillStyle = colors.main;
-                context.beginPath();
-                context.moveTo(x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2);
-                context.lineTo(x + bucketWidth / 2 - cornerRadius, y - bucketHeight / 2);
-                context.arcTo(x + bucketWidth / 2, y - bucketHeight / 2, x + bucketWidth / 2, y - bucketHeight / 2 + cornerRadius, cornerRadius);
-                context.lineTo(x + bucketWidth / 2, y + bucketHeight / 2 - cornerRadius);
-                context.arcTo(x + bucketWidth / 2, y + bucketHeight / 2, x + bucketWidth / 2 - cornerRadius, y + bucketHeight / 2, cornerRadius);
-                context.lineTo(x - bucketWidth / 2 + cornerRadius, y + bucketHeight / 2);
-                context.arcTo(x - bucketWidth / 2, y + bucketHeight / 2, x - bucketWidth / 2, y + bucketHeight / 2 - cornerRadius, cornerRadius);
-                context.lineTo(x - bucketWidth / 2, y - bucketHeight / 2 + cornerRadius);
-                context.arcTo(x - bucketWidth / 2, y - bucketHeight / 2, x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2, cornerRadius);
-                context.closePath();
-                context.fill();
-                context.fillStyle = 'black';
-                context.font = `bold ${bucketHeight / 2.5}px Inter`;
-                context.textAlign = 'center';
-                context.textBaseline = 'middle';
-                context.fillText(`${multiplier}x`, x, y);
-                context.restore();
-            }
+            context.translate(x, y);
+            context.scale(scale, scale);
+            context.translate(-x, -y);
+            context.fillStyle = colors.shadow;
+            context.beginPath();
+            context.moveTo(x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2 + shadowOffset);
+            context.lineTo(x + bucketWidth / 2 - cornerRadius, y - bucketHeight / 2 + shadowOffset);
+            context.arcTo(x + bucketWidth / 2, y - bucketHeight / 2 + shadowOffset, x + bucketWidth / 2, y - bucketHeight / 2 + cornerRadius + shadowOffset, cornerRadius);
+            context.lineTo(x + bucketWidth / 2, y + bucketHeight / 2 - cornerRadius + shadowOffset);
+            context.arcTo(x + bucketWidth / 2, y + bucketHeight / 2 + shadowOffset, x + bucketWidth / 2 - cornerRadius, y + bucketHeight / 2 + shadowOffset, cornerRadius);
+            context.lineTo(x - bucketWidth / 2 + cornerRadius, y + bucketHeight / 2 + shadowOffset);
+            context.arcTo(x - bucketWidth / 2, y + bucketHeight / 2 + shadowOffset, x - bucketWidth / 2, y + bucketHeight / 2 - cornerRadius + shadowOffset, cornerRadius);
+            context.lineTo(x - bucketWidth / 2, y - bucketHeight / 2 + cornerRadius + shadowOffset);
+            context.arcTo(x - bucketWidth / 2, y - bucketHeight / 2 + shadowOffset, x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2 + shadowOffset, cornerRadius);
+            context.closePath();
+            context.fill();
+            context.fillStyle = colors.main;
+            context.beginPath();
+            context.moveTo(x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2);
+            context.lineTo(x + bucketWidth / 2 - cornerRadius, y - bucketHeight / 2);
+            context.arcTo(x + bucketWidth / 2, y - bucketHeight / 2, x + bucketWidth / 2, y - bucketHeight / 2 + cornerRadius, cornerRadius);
+            context.lineTo(x + bucketWidth / 2, y + bucketHeight / 2 - cornerRadius);
+            context.arcTo(x + bucketWidth / 2, y + bucketHeight / 2, x + bucketWidth / 2 - cornerRadius, y + bucketHeight / 2, cornerRadius);
+            context.lineTo(x - bucketWidth / 2 + cornerRadius, y + bucketHeight / 2);
+            context.arcTo(x - bucketWidth / 2, y + bucketHeight / 2, x - bucketWidth / 2, y + bucketHeight / 2 - cornerRadius, cornerRadius);
+            context.lineTo(x - bucketWidth / 2, y - bucketHeight / 2 + cornerRadius);
+            context.arcTo(x - bucketWidth / 2, y - bucketHeight / 2, x - bucketWidth / 2 + cornerRadius, y - bucketHeight / 2, cornerRadius);
+            context.closePath();
+            context.fill();
+            context.fillStyle = 'black';
+            context.font = `bold ${bucketHeight / 2.5}px Inter`;
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(`${multiplier}x`, x, y);
             context.restore();
-            for (let i = hitBuckets.length - 1; i >= 0; i--) {
-                hitBuckets[i].progress -= 0.04; 
-                if (hitBuckets[i].progress <= 0) {
-                    hitBuckets.splice(i, 1);
+        }
+        context.restore();
+        for (let i = hitBuckets.length - 1; i >= 0; i--) {
+            hitBuckets[i].progress -= 0.04; 
+            if (hitBuckets[i].progress <= 0) {
+                hitBuckets.splice(i, 1);
+            }
+        }
+    }
+
+    function updateDebugStats() {
+        if (!isSecretMenuVisible) return;
+
+        const betValue = parseFloat(betAmountInput.value) || 0;
+        const moneyInPlay = (activeBallsCount * betValue).toFixed(2);
+
+        document.getElementById('stats-balls-in-play').textContent = activeBallsCount;
+        
+        // Only update money in play if balls are actively falling.
+        // The final value is set and cleared by showSummaryPopup and its timeout.
+        if (activeBallsCount > 0) {
+            document.getElementById('stats-money-in-play').textContent = `$${moneyInPlay}`;
+        }
+        
+        document.getElementById('stats-total-return').textContent = `$${totalReturn.toFixed(2)}`;
+        document.getElementById('stats-wins').textContent = totalWins;
+        document.getElementById('stats-losses').textContent = totalLosses;
+    }
+
+    function forceEndSession() {
+        if (!isSessionActive || activeBallsCount === 0) return;
+
+        const betValue = parseFloat(betAmountInput.value);
+        const stuckBalls = [...balls]; 
+
+        stuckBalls.forEach(ball => {
+            sessionResults.push({ multiplier: 1, winAmount: betValue * 1 });
+            World.remove(engine.world, ball);
+            const ballIndex = balls.findIndex(b => b.id === ball.id);
+            if (ballIndex !== -1) {
+                balls.splice(ballIndex, 1);
+            }
+        });
+        
+        totalWins += stuckBalls.length;
+        activeBallsCount = 0;
+        showSummaryPopup();
+        updateDebugStats();
+    }
+
+    function dropBall() {
+        const betValue = parseFloat(betAmountInput.value);
+        if (betValue <= 0 || isNaN(betValue)) {
+             messageEl.textContent = "Please enter a valid bet amount.";
+             messageEl.classList.add('text-[#ef0255]');
+             setTimeout(() => { messageEl.textContent = ""; messageEl.classList.remove('text-[#ef0255]'); }, 2000);
+             return;
+        }
+        
+        clearTimeout(statsClearTimeout); // Clear any pending stat resets
+
+        if (!isSessionActive) {
+            isSessionActive = true;
+            sessionResults = [];
+            difficultySelect.disabled = true;
+            rowsSelect.disabled = true;
+            betAmountInput.disabled = true;
+            betHalfButton.disabled = true;
+            betDoubleButton.disabled = true;
+        }
+        activeBallsCount++;
+        betButton.disabled = true;
+        setTimeout(() => { betButton.disabled = false; }, 100);
+        
+        clearTimeout(sessionTimeout);
+        sessionTimeout = setTimeout(forceEndSession, 15000);
+
+        document.getElementById('win-overlay').classList.add('hidden');
+        document.getElementById('loss-overlay').classList.add('hidden');
+        
+        const { width } = render.options;
+        const rows = parseInt(rowsSelect.value);
+        const divisor = 3.75 * rows + 30;
+        const ballRadius = width / divisor;
+        const x = width / 2 + (Math.random() - 0.5) * 6;
+
+        const ball = Bodies.circle(x, 10, ballRadius, {
+            restitution: 0.8,
+            friction: 0.05,
+            label: 'ball',
+            collisionFilter: { group: -1 },
+            render: { 
+                visible: false,
+                fillStyle: '#f08c14'
+            }
+        });
+        balls.push(ball);
+        World.add(engine.world, ball);
+        updateDebugStats();
+    }
+
+    function handleCollision(event) {
+        const pairs = event.pairs;
+        for (let i = 0; i < pairs.length; i++) {
+            const { bodyA, bodyB } = pairs[i];
+            let ball, otherBody;
+
+            if (bodyA.label === 'ball') { ball = bodyA; otherBody = bodyB; } 
+            else if (bodyB.label === 'ball') { ball = bodyB; otherBody = bodyA; } 
+            else { continue; }
+
+            if (otherBody.label.startsWith('bucket')) {
+                if (ball && !ball.isSleeping) {
+                    handleBallInBucket(ball, otherBody);
                 }
             }
         }
+    }
 
-        function updateDebugStats() {
-            if (!isSecretMenuVisible) return;
-
-            const betValue = parseFloat(betAmountInput.value) || 0;
-            const moneyInPlay = isSessionActive ? activeBallsCount * betValue : (lastMoneyInPlay !== null ? lastMoneyInPlay : 0);
-            const returnedAmount = lastReturnAmount !== null ? lastReturnAmount : 0;
-            
-            document.getElementById('stats-balls-in-play').textContent = activeBallsCount;
-            document.getElementById('stats-money-in-play').textContent = `$${moneyInPlay.toFixed(2)}`;
-            document.getElementById('stats-returned').textContent = `$${returnedAmount.toFixed(2)}`;
-            document.getElementById('stats-wins').textContent = totalWins;
-            document.getElementById('stats-losses').textContent = totalLosses;
+    function handleBallInBucket(ball, bucket) {
+        Body.set(ball, 'isSleeping', true);
+        const multipliers = getMultipliers();
+        const bucketIndex = parseInt(bucket.label.split('-')[1]);
+        hitBuckets.push({ index: bucketIndex, progress: 1.0 });
+        const multiplier = multipliers[bucketIndex];
+        const betValue = parseFloat(betAmountInput.value);
+        const winAmount = (betValue * multiplier);
+        
+        totalReturn += winAmount; // Update total return
+        
+        sessionResults.push({ multiplier, winAmount });
+        activeBallsCount--;
+        let endColor;
+        if (multiplier < 1) {
+            endColor = '#ef0255';
+            totalLosses++;
+        } else {
+            endColor = '#1fff20';
+            totalWins++;
         }
-
-        function clearPersistedStats() {
-            lastMoneyInPlay = null;
-            lastReturnAmount = null;
-            moneyStatTimeout = null;
-            updateDebugStats();
-        }
-
-        function forceEndSession() {
-            if (!isSessionActive || activeBallsCount === 0) return;
-
-            const betValue = parseFloat(betAmountInput.value);
-            const stuckBalls = [...balls]; 
-
-            stuckBalls.forEach(ball => {
-                sessionResults.push({ multiplier: 1, winAmount: betValue * 1 });
-                World.remove(engine.world, ball);
-                const ballIndex = balls.findIndex(b => b.id === ball.id);
-                if (ballIndex !== -1) {
-                    balls.splice(ballIndex, 1);
-                }
-            });
-            
-            totalWins += stuckBalls.length;
-            activeBallsCount = 0;
-            isSessionActive = false; // Session ends here
-
+        ball.render.fillStyle = endColor;
+        if (activeBallsCount === 0) {
+            clearTimeout(sessionTimeout);
             showSummaryPopup();
         }
+        setTimeout(() => {
+            World.remove(engine.world, ball);
+            balls = balls.filter(b => b.id !== ball.id);
+        }, 1000);
+        updateDebugStats();
+    }
 
-        function dropBall() {
-            const betValue = parseFloat(betAmountInput.value);
-            if (betValue <= 0 || isNaN(betValue)) {
-                 messageEl.textContent = "Please enter a valid bet amount.";
-                 messageEl.classList.add('text-[#ef0255]');
-                 setTimeout(() => { messageEl.textContent = ""; messageEl.classList.remove('text-[#ef0255]'); }, 2000);
-                 return;
-            }
+    function showSummaryPopup() {
+        const totalWin = sessionResults.reduce((sum, result) => sum + result.winAmount, 0);
+        const avgMultiplier = sessionResults.reduce((sum, result) => sum + result.multiplier, 0) / sessionResults.length;
+        const totalBet = parseFloat(betAmountInput.value) * sessionResults.length;
+        const sessionProfit = totalWin - totalBet;
+        const lastProfit = profitHistory[profitHistory.length - 1];
+        profitHistory.push(lastProfit + sessionProfit);
+        drawProfitGraph();
 
-            if (!isSessionActive) {
-                isSessionActive = true;
-                sessionResults = [];
-                clearTimeout(moneyStatTimeout);
-                lastMoneyInPlay = null;
-                lastReturnAmount = null;
-                difficultySelect.disabled = true;
-                rowsSelect.disabled = true;
-                betAmountInput.disabled = true;
-                betHalfButton.disabled = true;
-                betDoubleButton.disabled = true;
-            }
-
-            activeBallsCount++;
-            betButton.disabled = true;
-            setTimeout(() => { betButton.disabled = false; }, 100);
-            
-            clearTimeout(sessionTimeout);
-            sessionTimeout = setTimeout(forceEndSession, 15000);
-
-            document.getElementById('win-overlay').classList.add('hidden');
-            document.getElementById('loss-overlay').classList.add('hidden');
-            
-            const { width } = render.options;
-            const rows = parseInt(rowsSelect.value);
-            const divisor = 3.75 * rows + 30;
-            const ballRadius = width / divisor;
-            const x = width / 2 + (Math.random() - 0.5) * 6;
-
-            const ball = Bodies.circle(x, 10, ballRadius, {
-                restitution: 0.8,
-                friction: 0.05,
-                label: 'ball',
-                collisionFilter: { group: -1 },
-                render: { 
-                    visible: false,
-                    fillStyle: '#f08c14'
-                }
-            });
-            balls.push(ball);
-            World.add(engine.world, ball);
-            updateDebugStats();
+        // After play ends, display final Money in Play and start the 10-sec timer to clear it
+        if (isSecretMenuVisible) {
+            document.getElementById('stats-money-in-play').textContent = `$${totalBet.toFixed(2)}`;
+            statsClearTimeout = setTimeout(() => {
+                document.getElementById('stats-money-in-play').textContent = '$0.00';
+            }, 10000);
         }
 
-        function handleCollision(event) {
-            const pairs = event.pairs;
-            for (let i = 0; i < pairs.length; i++) {
-                const { bodyA, bodyB } = pairs[i];
-                let ball, otherBody;
-
-                if (bodyA.label === 'ball') { ball = bodyA; otherBody = bodyB; } 
-                else if (bodyB.label === 'ball') { ball = bodyB; otherBody = bodyA; } 
-                else { continue; }
-
-                if (otherBody.label.startsWith('bucket')) {
-                    if (ball && !ball.isSleeping) {
-                        handleBallInBucket(ball, otherBody);
-                    }
-                }
-            }
+        if (totalWin >= totalBet) {
+            const winOverlay = document.getElementById('win-overlay');
+            const winMultiplierEl = document.getElementById('win-multiplier');
+            const winAmountEl = document.getElementById('win-amount');
+            winMultiplierEl.textContent = `${avgMultiplier.toFixed(2)}x`;
+            winAmountEl.textContent = `$${totalWin.toFixed(2)}`;
+            winOverlay.classList.remove('hidden');
+            startFadeOut(winOverlay);
+        } else {
+            const lossOverlay = document.getElementById('loss-overlay');
+            const lossMultiplierEl = document.getElementById('loss-multiplier');
+            const lossAmountEl = document.getElementById('loss-amount');
+            const amountLost = totalBet - totalWin;
+            lossMultiplierEl.textContent = `${avgMultiplier.toFixed(2)}x`;
+            lossAmountEl.textContent = `-$${amountLost.toFixed(2)}`;
+            lossOverlay.classList.remove('hidden');
+            startFadeOut(lossOverlay);
         }
+    }
 
-        function handleBallInBucket(ball, bucket) {
-            Body.set(ball, 'isSleeping', true);
-            const multipliers = getMultipliers();
-            const bucketIndex = parseInt(bucket.label.split('-')[1]);
-            hitBuckets.push({ index: bucketIndex, progress: 1.0 });
-            const multiplier = multipliers[bucketIndex];
-            const betValue = parseFloat(betAmountInput.value) || 0;
-            const winAmount = (betValue * multiplier);
-            sessionResults.push({ multiplier, winAmount });
-            activeBallsCount--;
-            let endColor;
-            if (multiplier < 1) {
-                endColor = '#ef0255';
-                totalLosses++;
+    function startFadeOut(overlay) {
+         setTimeout(() => {
+            overlay.classList.add('animate-fade-out');
+            betButton.disabled = false;
+            betButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            difficultySelect.disabled = false;
+            rowsSelect.disabled = false;
+            betAmountInput.disabled = false;
+            betHalfButton.disabled = false;
+            betDoubleButton.disabled = false;
+            isSessionActive = false;
+        }, 1000);
+
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+            overlay.classList.remove('animate-fade-out');
+        }, 1500);
+    }
+    
+    function drawProfitGraph() {
+        if (!isSecretMenuVisible) {
+            profitGraphCanvas.classList.add('hidden');
+            return;
+        }
+        profitGraphCanvas.classList.remove('hidden');
+        const ctx = profitGraphCanvas.getContext('2d');
+        const w = profitGraphCanvas.width;
+        const h = profitGraphCanvas.height;
+        ctx.clearRect(0, 0, w, h);
+        if (profitHistory.length < 2) return;
+        const maxProfit = Math.max(...profitHistory, 0);
+        const minProfit = Math.min(...profitHistory, 0);
+        const range = maxProfit - minProfit;
+        const y_scale = range === 0 ? 0 : h / range;
+        const x_step = w / (profitHistory.length - 1);
+        const lastProfit = profitHistory[profitHistory.length - 1];
+        ctx.beginPath();
+        ctx.strokeStyle = '#4a5568';
+        ctx.lineWidth = 1;
+        const zeroY = range === 0 ? h / 2 : h - (0 - minProfit) * y_scale;
+        ctx.moveTo(0, zeroY);
+        ctx.lineTo(w, zeroY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.strokeStyle = lastProfit >= 0 ? '#1fff20' : '#ef0255';
+        ctx.lineWidth = 2;
+        profitHistory.forEach((profit, index) => {
+            const x = index * x_step;
+            const y = h - (profit - minProfit) * y_scale;
+            if (index === 0) {
+                ctx.moveTo(x, y);
             } else {
-                endColor = '#1fff20';
-                totalWins++;
-            }
-            ball.render.fillStyle = endColor;
-
-            if (activeBallsCount === 0) {
-                clearTimeout(sessionTimeout);
-                isSessionActive = false;
-                showSummaryPopup();
-            }
-            setTimeout(() => {
-                World.remove(engine.world, ball);
-                balls = balls.filter(b => b.id !== ball.id);
-            }, 1000);
-            updateDebugStats();
-        }
-
-        function showSummaryPopup() {
-            const totalWin = sessionResults.reduce((sum, result) => sum + result.winAmount, 0);
-            const totalBet = parseFloat(betAmountInput.value) * sessionResults.length;
-            const avgMultiplier = sessionResults.length ? (totalWin / totalBet) : 0;
-            
-            lastMoneyInPlay = totalBet;
-            lastReturnAmount = totalWin;
-
-            clearTimeout(moneyStatTimeout);
-            moneyStatTimeout = setTimeout(clearPersistedStats, 10000);
-
-            const sessionProfit = totalWin - totalBet;
-            const lastProfit = profitHistory[profitHistory.length - 1];
-            profitHistory.push(lastProfit + sessionProfit);
-            drawProfitGraph();
-            if (totalWin >= totalBet) {
-                const winOverlay = document.getElementById('win-overlay');
-                const winMultiplierEl = document.getElementById('win-multiplier');
-                const winAmountEl = document.getElementById('win-amount');
-                winMultiplierEl.textContent = `${avgMultiplier.toFixed(2)}x`;
-                winAmountEl.textContent = `$${totalWin.toFixed(2)}`;
-                winOverlay.classList.remove('hidden');
-                startFadeOut(winOverlay);
-            } else {
-                const lossOverlay = document.getElementById('loss-overlay');
-                const lossMultiplierEl = document.getElementById('loss-multiplier');
-                const lossAmountEl = document.getElementById('loss-amount');
-                const amountLost = totalBet - totalWin;
-                lossMultiplierEl.textContent = `${avgMultiplier.toFixed(2)}x`;
-                lossAmountEl.textContent = `-$${amountLost.toFixed(2)}`;
-                lossOverlay.classList.remove('hidden');
-                startFadeOut(lossOverlay);
-            }
-            updateDebugStats();
-        }
-
-        function startFadeOut(overlay) {
-             setTimeout(() => {
-                overlay.classList.add('animate-fade-out');
-                betButton.disabled = false;
-                betButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                difficultySelect.disabled = false;
-                rowsSelect.disabled = false;
-                betAmountInput.disabled = false;
-                betHalfButton.disabled = false;
-                betDoubleButton.disabled = false;
-            }, 1000);
-
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-                overlay.classList.remove('animate-fade-out');
-            }, 1500);
-        }
-        
-        function drawProfitGraph() {
-            if (!isSecretMenuVisible) {
-                profitGraphCanvas.classList.add('hidden');
-                return;
-            }
-            profitGraphCanvas.classList.remove('hidden');
-            const ctx = profitGraphCanvas.getContext('2d');
-            const w = profitGraphCanvas.width;
-            const h = profitGraphCanvas.height;
-            ctx.clearRect(0, 0, w, h);
-            if (profitHistory.length < 2) return;
-            const maxProfit = Math.max(...profitHistory, 0);
-            const minProfit = Math.min(...profitHistory, 0);
-            const range = maxProfit - minProfit;
-            const y_scale = range === 0 ? 0 : h / range;
-            const x_step = w / (profitHistory.length - 1);
-            const lastProfit = profitHistory[profitHistory.length - 1];
-            ctx.beginPath();
-            ctx.strokeStyle = '#4a5568';
-            ctx.lineWidth = 1;
-            const zeroY = range === 0 ? h / 2 : h - (0 - minProfit) * y_scale;
-            ctx.moveTo(0, zeroY);
-            ctx.lineTo(w, zeroY);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.strokeStyle = lastProfit >= 0 ? '#1fff20' : '#ef0255';
-            ctx.lineWidth = 2;
-            profitHistory.forEach((profit, index) => {
-                const x = index * x_step;
-                const y = h - (profit - minProfit) * y_scale;
-                if (index === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            });
-            ctx.stroke();
-        }
-        
-        function toggleSecretMenu() {
-            isSecretMenuVisible = !isSecretMenuVisible;
-            secretMenuContainer.classList.toggle('hidden', !isSecretMenuVisible);
-            profitGraphCanvas.classList.toggle('hidden', !isSecretMenuVisible);
-            if(isSecretMenuVisible) {
-                updateDebugStats();
-                drawProfitGraph();
-            }
-        }
-
-        function onResize() {
-            if (!render) return;
-            const containerWidth = gameContainer.clientWidth;
-            const containerHeight = gameContainer.clientHeight;
-            render.bounds.max.x = containerWidth;
-            render.bounds.max.y = containerHeight;
-            render.options.width = containerWidth;
-            render.options.height = containerHeight;
-            render.canvas.width = containerWidth;
-            render.canvas.height = containerHeight;
-            drawScene();
-            drawProfitGraph();
-        }
-
-        betButton.addEventListener('click', dropBall);
-        [difficultySelect, rowsSelect].forEach(el => el.addEventListener('change', drawScene));
-
-        betHalfButton.addEventListener('click', () => {
-            const currentVal = parseFloat(betAmountInput.value);
-            if (!isNaN(currentVal)) {
-                betAmountInput.value = (currentVal / 2).toFixed(2);
+                ctx.lineTo(x, y);
             }
         });
-        betDoubleButton.addEventListener('click', () => {
-             const currentVal = parseFloat(betAmountInput.value);
-            if (!isNaN(currentVal)) {
-                betAmountInput.value = (currentVal * 2).toFixed(2);
-            }
-        });
-        
-        logoImage.addEventListener('click', () => {
-            logoClickCount++;
-            clearTimeout(logoClickTimer);
-            if (logoClickCount >= 20) {
-                toggleSecretMenu();
+        ctx.stroke();
+    }
+    
+    function toggleSecretMenu() {
+        isSecretMenuVisible = !isSecretMenuVisible;
+        secretMenuContainer.classList.toggle('hidden', !isSecretMenuVisible);
+        profitGraphCanvas.classList.toggle('hidden', !isSecretMenuVisible);
+        if(isSecretMenuVisible) {
+            updateDebugStats();
+            drawProfitGraph();
+        }
+    }
+
+    function onResize() {
+        if (!render) return;
+        const containerWidth = gameContainer.clientWidth;
+        const containerHeight = gameContainer.clientHeight;
+        render.bounds.max.x = containerWidth;
+        render.bounds.max.y = containerHeight;
+        render.options.width = containerWidth;
+        render.options.height = containerHeight;
+        render.canvas.width = containerWidth;
+        render.canvas.height = containerHeight;
+        drawScene();
+        drawProfitGraph();
+    }
+
+    betButton.addEventListener('click', dropBall);
+    [difficultySelect, rowsSelect].forEach(el => el.addEventListener('change', drawScene));
+
+    betHalfButton.addEventListener('click', () => {
+        const currentVal = parseFloat(betAmountInput.value);
+        if (!isNaN(currentVal)) {
+            betAmountInput.value = (currentVal / 2).toFixed(2);
+        }
+    });
+    betDoubleButton.addEventListener('click', () => {
+         const currentVal = parseFloat(betAmountInput.value);
+        if (!isNaN(currentVal)) {
+            betAmountInput.value = (currentVal * 2).toFixed(2);
+        }
+    });
+    
+    logoImage.addEventListener('click', () => {
+        logoClickCount++;
+        clearTimeout(logoClickTimer);
+        if (logoClickCount >= 20) {
+            toggleSecretMenu();
+            logoClickCount = 0;
+        } else {
+            logoClickTimer = setTimeout(() => {
                 logoClickCount = 0;
-            } else {
-                logoClickTimer = setTimeout(() => {
-                    logoClickCount = 0;
-                }, 2000);
-            }
-        });
+            }, 2000);
+        }
+    });
 
-        document.addEventListener('keydown', (e) => {
-            if (e.target.tagName === 'INPUT') return;
-            typedSequence += e.key.toLowerCase();
-            if (typedSequence.length > secretCode.length) {
-                typedSequence = typedSequence.slice(typedSequence.length - secretCode.length);
-            }
-            if (typedSequence === secretCode) {
-                toggleSecretMenu();
-            }
-        });
+    document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT') return;
+        typedSequence += e.key.toLowerCase();
+        if (typedSequence.length > secretCode.length) {
+            typedSequence = typedSequence.slice(typedSequence.length - secretCode.length);
+        }
+        if (typedSequence === secretCode) {
+            toggleSecretMenu();
+        }
+    });
 
-        window.addEventListener('resize', onResize);
-        setup();
+    window.addEventListener('resize', onResize);
+    setup();
 
-    </script>
+</script>
 </body>
 </html>
-
